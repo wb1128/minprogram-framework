@@ -1,0 +1,11 @@
+<import src="../../base.wxml"/>
+<template is="taro_tmpl" data="{{root:root}}" />
+
+{{ utils.log(root) }}
+<wxs module="utils">
+var log = function(any) {
+  console.log(JSON.stringify(any))
+}
+
+module.exports.log = log;
+</wxs>

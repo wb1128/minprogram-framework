@@ -1,0 +1,38 @@
+<!----------   wxs start ----------->
+<wxs module="m1">
+"use strict";
+
+var getTime = function getTime(time) {
+  var date = getDate(time);
+  var hour = date.getHours();
+  var mins = date.getMinutes();
+  var sec = date.getSeconds();
+  var milli = date.getMilliseconds();
+  return "".concat(hour, ":").concat(mins, ":").concat(sec, ".").concat(milli);
+};
+module.exports.getTime = getTime;
+</wxs>
+<!----------   wxs end   ----------->
+
+<view class="container">
+  <view data-wpy-evt="5-0" bind:tap="__dispatcher" class="userinfo">
+    <image src="{{ userInfo.avatarUrl }}" background-size="cover" class="userinfo-avatar"></image>
+    <view class="userinfo-nickname">{{ userInfo.nickName }} + {{ userinfoNum }}</view>
+  </view>
+
+  <panel bind_init="__initComponent">
+    <view slot="title" class="title">测试数据绑定</view>
+
+    <text data-wpy-evt="5-1" bind:tap="__dispatcher" class="info">{{m1.getTime(currentTime)}}</text>
+    <text class="info">{{setTimeoutTitle}}</text>
+    <text data-wpy-evt="5-2" bind:tap="__dispatcher" class="info">{{mixin}}</text>
+  </panel>
+
+   <panel bind_init="__initComponent">
+     <view slot="title" class="title">测试 v-model</view>
+     <view style="display: flex; align-items: center;">
+       <input value="{{ inputmodel }}" bindinput="__dispatcher" data-model-id="0" />
+       <text style="margin-left: 30rpx;">Value: {{inputmodel}}</text>
+     </view>
+   </panel>
+</view>

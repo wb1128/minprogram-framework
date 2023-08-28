@@ -1,0 +1,179 @@
+<style lang="less">
+  input {
+    border: 1rpx solid #ccc;
+    display: inline-block;
+    width: 200rpx;
+    border-radius: 5rpx;
+  }
+  .info {
+    padding-right: 10rpx;
+  }
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userinfo-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+  }
+
+  .userinfo-nickname {
+    color: #aaa;
+  }
+  .slide {
+    width: 640rpx;
+    display: flex;
+    border: 1rpx solid #ccc;
+    font-size: 28rpx;
+    align-items: center;
+    box-sizing: border-box;
+    .left {
+      width: 750rpx;
+      padding: 20rpx;
+    }
+    .right {
+      display: flex;
+      .right-item {
+        padding: 20rpx 30rpx;
+        background-color: red;
+        color: #fff;
+      }
+    }
+  }
+</style>
+<wxs module="m1" lang="babel">
+const getTime = (time) => {
+  let date = getDate(time);
+  let hour = date.getHours();
+  let mins = date.getMinutes();
+  let sec = date.getSeconds();
+  let milli = date.getMilliseconds();
+  return `${hour}:${mins}:${sec}.${milli}`;
+}
+module.exports.getTime = getTime;
+</wxs>
+<template>
+  <div class="container">
+    <div class="userinfo" @tap="handleViewTap">
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <div class="userinfo-nickname">{{ userInfo.nickName }} + {{ userinfoNum }}</div>
+    </div>
+
+    <panel>
+      <div class="title" slot="title">测试数据绑定</div>
+
+      <text class="info" @tap="currentTime = +new Date()">{{m1.getTime(currentTime)}}</text>
+      <text class="info">{{setTimeoutTitle}}</text>
+      <text class="info" @tap="mixintap">{{mixin}}</text>
+    </panel>
+
+     <panel>
+       <div class="title" slot="title">测试 v-model</div>
+       <div style="display: flex; align-items: center;">
+         <input v-model="inputmodel" />
+         <text style="margin-left: 30rpx;">Value: {{inputmodel}}</text>
+       </div>
+     </panel>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  import eventHub from '../common/eventHub';
+  import testMixin from '../mixins/test'
+
+  wepy.page({
+    config: {
+      navigationBarTitleText: 'test'
+    },
+
+    hooks: {
+      // Page 级别 hook, 只对当前 Page 的 setData 生效。
+      'before-setData': function (dirty) {
+        if (Math.random() < 0.2) {
+          console.log('setData canceled');
+          return false; // Cancel setData
+        }
+        dirty.time = +new Date();
+        return dirty;
+      }
+    },
+
+ 
+
+    mixins: [testMixin],
+
+    data: {
+      inputmodel: 'v-model',
+      mynum: 20,
+      userInfo: {
+        nickName: '加载中...'
+      },
+      currentTime: +new Date(),
+      setTimeoutTitle: '标题三秒后会被修改',
+      count: 0,
+      netrst: '',
+      userinfoNum: 1,
+    },
+
+    computed: {
+    },
+
+    methods: {
+      handleViewTap () {
+        console.log('handleVieTap clicked');
+        this.userinfoNum += 1;
+      },
+      plus () {
+        this.mynum++
+      },
+      toast () {
+        let promise = this.$invoke('toast', 'show', {
+          title: '自定义标题',
+          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+        })
+
+        promise.then((d) => {
+          console.log('toast done')
+        });
+      },
+      mixintap () {
+        console.log('do noting from ' + this.$is);
+      },
+      counterEmit (num) {
+        console.log(`${this.$is} receive event, the number is: ${num}`);
+      }
+    },
+
+    created () {
+      let self = this
+      self.currentTime = +new Date(); 
+
+      self.setTimeoutTitle = '标题三秒后会被修改';
+      setTimeout(() => {
+        self.setTimeoutTitle = '到三秒了';
+      }, 3000);
+
+      wx.getUserInfo({
+        success (res) {
+          self.userInfo = res.userInfo;
+        }
+      });
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: 'WePY 2.0 Feature Demo',
+    usingComponents: {
+      panel: '~@/components/panel',
+      counter: '~counter',
+      list: '../components/list',
+      group: '../components/group',
+      "slide-view": "module:miniprogram-slide-view",
+    }
+}
+</config>

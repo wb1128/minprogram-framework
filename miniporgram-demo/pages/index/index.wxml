@@ -1,0 +1,66 @@
+<!-- 1、 -->
+<!-- <template is="tpl" data="{{ root: root }}"></template>
+<template name="tpl">
+  <image style="width: 100%; height: 200px;" src="{{ root.src }}"></image>
+  <text>{{ root.text }}</text>
+</template> -->
+
+<!-- 2、 -->
+<!-- <template is="tpl" data="{{ root: root }}"></template>
+<template name="tpl">
+  <image style="width: 100%; height: 200px;" src="{{ root.src }}"></image>
+  <template is="tpl-text" data="{{ text: root.text }}"></template>
+</template>
+<template name="tpl-text">
+  <text>{{ text }}</text>
+</template> -->
+
+<!-- 3、 -->
+<template is="tpl" data="{{ root: root }}"></template>
+<template name="tpl">
+  <template is="tpl-container" data="{{ item: root }}"></template>
+</template>
+<!-- template 容器 -->
+<template name="tpl-container">
+  <block wx:for="{{ item.children }}" wx:key="{{ item.id }}">
+    <template is="{{ 'tpl-' + item.type }}" data="{{ item: item }}"></template>
+  </block>
+</template>
+<!-- template image 的声明 -->
+<template name="tpl-image">
+  <image style="width: 100%; height: 200px;" src="{{ item.src }}"></image>
+</template>
+<!-- template text 的声明 -->
+<template name="tpl-text">
+  <text>{{ item.value }}</text>
+</template>
+
+<!-- 4、 -->
+<!-- <template is="tpl" data="{{ root: root }}"></template>
+<template name="tpl">
+  <template is="tpl-container" data="{{ item: root }}"></template>
+</template>
+<template name="tpl-container">
+  <block wx:for="{{ item.children }}" wx:key="{{ item.id }}">
+    <template is="{{ 'tpl-' + item.type }}" data="{{ item: item }}"></template>
+  </block>
+</template>
+<template name="tpl-view">
+  {{ utils.log(item) }}
+  <view style="border: 1px solid red;">
+    <template is="tpl-container" data="{{ item: item }}"></template>
+  </view>
+</template>
+<template name="tpl-image">
+  <image style="width: 100%; height: 200px;" src="{{ item.src }}"></image>
+</template>
+<template name="tpl-text">
+  <text>{{ item.value }}</text>
+</template> -->
+<wxs module="utils">
+var log = function(any) {
+  console.log(JSON.stringify(any))
+}
+
+module.exports.log = log;
+</wxs>

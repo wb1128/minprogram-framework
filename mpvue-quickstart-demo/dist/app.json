@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/myClass",
+    "pages/myTest",
+    "pages/one2one",
+    "pages/aboutUs",
+    "pages/register",
+    "pages/login",
+    "manage/students",
+    "manage/class",
+    "manage/test",
+    "manage/one2one",
+    "manage/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-tag": "/vant-weapp/dist/tag/index"
+  },
+  "cloud": true,
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#00D297",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "报名",
+        "pagePath": "pages/index",
+        "iconPath": "static/tab-bar-icon/icon-bar1-default.png",
+        "selectedIconPath": "static/tab-bar-icon/icon-bar1-select.png"
+      },
+      {
+        "text": "班级",
+        "pagePath": "pages/myClass",
+        "iconPath": "static/tab-bar-icon/icon-bar2-default.png",
+        "selectedIconPath": "static/tab-bar-icon/icon-bar2-select.png"
+      },
+      {
+        "text": "成绩",
+        "pagePath": "pages/myTest",
+        "iconPath": "static/tab-bar-icon/icon-bar3-default.png",
+        "selectedIconPath": "static/tab-bar-icon/icon-bar3-select.png"
+      },
+      {
+        "text": "一对一",
+        "pagePath": "pages/one2one",
+        "iconPath": "static/tab-bar-icon/icon-bar4-default.png",
+        "selectedIconPath": "static/tab-bar-icon/icon-bar4-select.png"
+      },
+      {
+        "text": "关于",
+        "pagePath": "pages/aboutUs",
+        "iconPath": "static/tab-bar-icon/icon-bar5-default.png",
+        "selectedIconPath": "static/tab-bar-icon/icon-bar5-select.png"
+      }
+    ]
+  },
+  "subPackages": []
+}

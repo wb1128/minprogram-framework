@@ -1,0 +1,17 @@
+<import src="/components/card.vue.wxml" /><template name="56684e17">
+  <view class="_div data-v-bea9f280 container" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">
+    <view class="_div data-v-bea9f280 userinfo" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+      <image class="_img data-v-bea9f280 userinfo-avatar" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <view class="_div data-v-bea9f280 userinfo-nickname"><template data="{{...$root[$kk+'0'], $root}}" is="6affaef3"></template></view>
+    </view>
+    <view class="_div data-v-bea9f280 usermotto">
+      <view class="_div data-v-bea9f280 user-motto"><template data="{{...$root[$kk+'1'], $root}}" is="6affaef3"></template></view>
+    </view>
+    <form class="_form data-v-bea9f280 form-container"><input type="text" class="_input data-v-bea9f280 form-control" value="{{motto}}" bindinput="handleProxy" placeholder="v-model" data-eventid="{{'1'}}" data-comkey="{{$k}}" /> <input type="text" class="_input data-v-bea9f280 form-control" value="{{motto}}" bindblur="handleProxy" placeholder="v-model.lazy" data-eventid="{{'2'}}" data-comkey="{{$k}}" /></form>
+    <navigator url="/pages/counter" class="_a data-v-bea9f280 counter">去往Vuex示例页面</navigator>
+    <view class="_div data-v-bea9f280 home-page">
+      <view bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_p data-v-bea9f280"> click me </view>
+      <view class="_p data-v-bea9f280">{{test}}</view>
+    </view>
+  </view>
+</template>

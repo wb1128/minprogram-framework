@@ -1,0 +1,35 @@
+
+.userinfo.data-v-bea9f280 {
+  width: 100rpx;
+  height: 100rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #cccccc;
+}
+.userinfo .userinfo-avatar.data-v-bea9f280 {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo .userinfo-nickname.data-v-bea9f280 {
+  color: #aaa;
+}
+.form-control.data-v-bea9f280 {
+  display: block;
+  padding: 0 12rpx;
+  margin-bottom: 5rpx;
+  border: 1rpx solid #ccc;
+}
+.counter.data-v-bea9f280 {
+  display: inline-block;
+  margin: 10rpx auto;
+  padding: 5rpx 10rpx;
+  color: blue;
+  border: 1rpx solid blue;
+}
+.card {
+  padding: 10rpx;
+}
